@@ -4,7 +4,11 @@ from flask import Flask, render_template, request
 from .models import DB, User, Tweet
 from .twitter import add_or_update_user
 from twitoff.predict import predict_user
+import os
+import psycopg2
 
+DATABASE_URL = os.environ[getenv("DATABASE_URL")]
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 def create_app():
     """Creates and configures an instance of the flask application"""
