@@ -5,16 +5,16 @@ from .models import DB, User, Tweet
 from .twitter import add_or_update_user
 from twitoff.predict import predict_user
 import os
-import psycopg2
+import psycopg2 as pg2
 
 DATABASE_URL = os.environ[getenv("DATABASE_URL")]
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+conn = pg2.connect(DATABASE_URL, sslmode='require')
 
 def create_app():
     """Creates and configures an instance of the flask application"""
     app = Flask(__name__)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
+    app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     DB.init_app(app)
 
