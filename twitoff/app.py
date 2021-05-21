@@ -4,8 +4,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from .models import DB, User, Tweet
 from .twitter import add_or_update_user
-from twitoff.predict import predict_user
-import os
+from .predict import predict_user
 
 
 def create_app():
@@ -14,9 +13,9 @@ def create_app():
 
     app.config["SQLALCHEMY_DATABASE_URI"] = getenv(
         "HEROKU_POSTGRESQL_ROSE_URL")
+    # app.config["SQLALCHEMY_DATABASE_URI"] = getenv(
+    #     "DATABASE_URL")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-    DB = SQLAlchemy(app)
 
     DB.init_app(app)
 
