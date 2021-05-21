@@ -7,7 +7,7 @@ from twitoff.predict import predict_user
 import os
 import psycopg2 as pg2
 
-DATABASE_URL = os.environ[getenv("HEROKU_POSTGRESQL_ROSE_URL")]
+DATABASE_URL = os.environ[getenv("DATABASE_URL")]
 conn = pg2.connect(DATABASE_URL, sslmode='require')
 
 def create_app():
